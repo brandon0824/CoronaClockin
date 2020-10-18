@@ -3,6 +3,7 @@ import time as tm
 import random
 import json
 
+print("-----Auto Fill Form Starting-----")
 with open('info.json', 'r') as myfile:
     data=myfile.read()
 
@@ -11,7 +12,9 @@ obj = json.loads(data)
 # print("password:" + str(obj['password']))
 myusername = str(obj['username'])
 mypassword = str(obj['password'])
-# print(myusername, mypassword)
+
+print("Your username is : " + myusername)
+print("Your password is : " + mypassword)
 
 login_url = 'https://jkxxcj.zjhu.edu.cn/login.html'
 
@@ -40,7 +43,8 @@ b1 = round(b, 1)
 # print(a1, b1)
 mornTemp = str(a1)
 nightTemp = str(b1)
-# print(mornTemp, nightTemp)
+print("Random morning Temperature : " + mornTemp)
+print("Random night Temperature : " + nightTemp)
 
 tm.sleep(3)
 inputMorn = driver.find_element_by_xpath("/html/body/div[1]/div[3]/div[2]/form/div[19]/div/textarea")
@@ -52,8 +56,9 @@ inputNight = driver.find_element_by_xpath("/html/body/div[1]/div[3]/div[2]/form/
 inputNight.clear()
 inputNight.send_keys(nightTemp)
 
-# tm.sleep(3)
-# confirm = driver.find_element_by_id('saveBtn')
-# confirm.click()
+tm.sleep(3)
+confirm = driver.find_element_by_id('saveBtn')
+confirm.click()
 
-# driver.close()
+driver.close()
+print("-----Auto Fill Form Finished-----")
