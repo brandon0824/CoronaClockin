@@ -2,13 +2,13 @@
 
 ## Install
 
-### Download python and selenium
+#### Download python and selenium
 
 ```bash
 pip install selenium
 ```
 
-### Config Chrome Driver in PC
+#### Config Chrome Driver in PC
 
 ## Configure
 
