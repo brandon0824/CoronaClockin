@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-    
+# -*- coding: UTF-8 -*-
 from selenium import webdriver
 import time as tm
 import random
