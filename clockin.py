@@ -61,5 +61,6 @@ tm.sleep(3)
 confirm = driver.find_element_by_id('saveBtn')
 confirm.click()
 
+tm.sleep(3)
 driver.close()
 print("-----Auto Fill Form Finished-----")
