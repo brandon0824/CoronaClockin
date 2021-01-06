@@ -14,8 +14,11 @@ pip install selenium
 
 Config your username and password in info.json
 
-```bash
-{"username": 123456,"password":"123456"}
+```json
+{
+    "username": 123456,
+    "password": "123456"
+}
 ```
 
 ## Run
