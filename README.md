@@ -16,8 +16,16 @@ Config your username and password in info.json
 
 ```json
 {
-    "username": 123456,
-    "password": "123456"
+    "members": [
+        {
+            "username": 123456,
+            "password": "123456"
+        },
+        {
+            "username": 12345,
+            "password": "12345"
+        }...
+    ]
 }
 ```
 
