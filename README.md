@@ -24,7 +24,7 @@ Config your username and password in info.json
         {
             "username": 12345,
             "password": "12345"
-        }...
+        }
     ]
 }
 ```
