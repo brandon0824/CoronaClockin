@@ -9,7 +9,7 @@ def readJson():
     username = []
     password = []
 
-    with open('C:/Users/Brandon/Desktop/data.json', 'r') as myfile:
+    with open('D:/python_practice/CoronaClockin/info.json', 'r') as myfile:
         data=myfile.read()
 
     obj = json.loads(data)
@@ -73,12 +73,29 @@ def clockin(myusername, mypassword):
     confirm.click()
 
     tm.sleep(3)
+    check_url = 'https://jkxxcj.zjhu.edu.cn/historyList.html'
+    driver.get(check_url)
+    tm.sleep(3)
+
+    obj = driver.find_element_by_xpath("/html/body/div[1]/div[3]/div[2]/table/tbody/tr[1]/td[2]/span")
+    state = obj.text
+    # type(state) = 'str' 2state:已填写/未填写
+    # print(state)
+    if state == '已填写':
+        print(f'The account of {myusername} signed succeed!')
+    else:
+        print(f'The account of {myusername} signed failed!')
+
+    tm.sleep(3)
     driver.close()
 
 
+
 if __name__ == '__main__':
+    
     print("-----Auto Fill Form Starting-----")
     uname, pwd = readJson()
     for i in range(len(uname)):
         clockin(uname[i], pwd[i])
+
     print("-----Auto Fill Form Finished-----")
