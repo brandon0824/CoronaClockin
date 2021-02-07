@@ -1,5 +1,9 @@
 # -*- coding: UTF-8 -*-
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
 import time as tm
 import random
 import json
@@ -30,8 +34,11 @@ def readJson():
 def clockin(myusername, mypassword):
     login_url = 'https://jkxxcj.zjhu.edu.cn/login.html'
     check_url = 'https://jkxxcj.zjhu.edu.cn/historyList.html'
+    health_url = 'https://jkxxcj.zjhu.edu.cn/questionList.html'
 
     driver = webdriver.Chrome()
+    driver.implicitly_wait(10)
+    # driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.get(login_url)
     driver.maximize_window()
     tm.sleep(3)
@@ -73,6 +80,14 @@ def clockin(myusername, mypassword):
         healthReport = driver.find_element_by_link_text('健康报告')
         healthReport.click()
 
+        # try:
+        #     element = WebDriverWait(driver, 10).until(
+        #     EC.presence_of_element_located((By.ID, 'jkbg'))
+        # )
+        # finally:
+        #     driver.quit()
+
+        tm.sleep(5)
         a = random.uniform(36.6, 37.4)
         b = random.uniform(36.6, 37.4)
         a1 = round(a, 1)
@@ -113,14 +128,25 @@ def clockin(myusername, mypassword):
 
         tm.sleep(3)
         driver.quit()
+        return state
 
 
 
 if __name__ == '__main__':
     
+    successlist = []
+    faillist = []
+
     print("-----Auto Fill Form Starting-----")
     uname, pwd = readJson()
     for i in range(len(uname)):
-        clockin(uname[i], pwd[i])
+        state = clockin(uname[i], pwd[i])
+        if state == '已填写':
+            successlist.append(uname[i])
+        else:
+            faillist.append(uname[i])
+    print(f'successlist是{successlist}')
+    print(f'faillist是{faillist}')
+
 
     print("-----Auto Fill Form Finished-----")
