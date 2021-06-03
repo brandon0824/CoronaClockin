@@ -36,9 +36,10 @@ def clockin(myusername, mypassword):
     check_url = 'https://jkxxcj.zjhu.edu.cn/historyList.html'
     health_url = 'https://jkxxcj.zjhu.edu.cn/questionList.html'
 
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(ChromeDriverManager().install())
+    # driver = webdriver.Chrome()
     driver.implicitly_wait(10)
-    # driver = webdriver.Chrome(ChromeDriverManager().install())
+    
     driver.get(login_url)
     driver.maximize_window()
     tm.sleep(3)
